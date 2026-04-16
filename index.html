@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crittografia - Cifra</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Cifrario</div>
+    <div class="mode-menu-container">
+      <button class="mode-btn" aria-label="Menu modalità">Mode</button>
+      <nav class="mode-menu">
+        <a href="index.html" class="active">Cifratura</a>
+        <a href="decrittatura.html">Decifratura</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <section class="card">
+      <h1>Cifratura</h1>
+      <p>Inserisci il messaggio da cifrare e la chiave numerica.</p>
+      <form id="encryptForm">
+        <label for="encryptMessage">Messaggio da cifrare</label>
+        <textarea id="encryptMessage" rows="5" placeholder="Scrivi qui il messaggio..." required></textarea>
+
+        <label for="encryptShift">Spostamento lettere (0-500)</label>
+        <input id="encryptShift" type="number" min="0" max="500" required />
+
+        <button type="submit" class="primary-btn">Cripta</button>
+      </form>
+    </section>
+  </main>
+
+  <div id="encryptModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close-btn" type="button" aria-label="Chiudi finestra">×</button>
+      <h2>Risultato Cifratura</h2>
+      <div class="modal-field">
+        <label>Messaggio originale</label>
+        <textarea id="originalEncrypt" readonly></textarea>
+      </div>
+      <div class="modal-field">
+        <label>Messaggio cifrato</label>
+        <textarea id="cipherEncrypt" readonly></textarea>
+        <div class="modal-buttons">
+          <button class="copy-btn" type="button">Copia messaggio cifrato</button>
+          <button class="delete-btn" type="button">Elimina</button>
+        </div>
+      </div>
+      <div class="modal-field">
+        <label>Chiave numerica utilizzata</label>
+        <input id="keyEncrypt" readonly />
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

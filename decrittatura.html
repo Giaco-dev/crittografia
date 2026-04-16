@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crittografia - Decifra</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Cifrario</div>
+    <div class="mode-menu-container">
+      <button class="mode-btn" aria-label="Menu modalità">Mode</button>
+      <nav class="mode-menu">
+        <a href="index.html">Cifratura</a>
+        <a href="decrittatura.html" class="active">Decifratura</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <section class="card">
+      <h1>Decifratura</h1>
+      <p>Inserisci il messaggio cifrato e la chiave per ottenere il testo originale.</p>
+      <form id="decryptForm">
+        <label for="decryptMessage">Messaggio da decifrare</label>
+        <textarea id="decryptMessage" rows="5" placeholder="Scrivi qui il messaggio..." required></textarea>
+
+        <label for="decryptShift">Spostamento lettere (0-500)</label>
+        <input id="decryptShift" type="number" min="0" max="500" required />
+
+        <button type="submit" class="primary-btn">Decripta</button>
+      </form>
+    </section>
+  </main>
+
+  <div id="decryptModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close-btn" type="button" aria-label="Chiudi finestra">×</button>
+      <h2>Risultato Decifratura</h2>
+      <div class="modal-field">
+        <label>Messaggio da decifrare</label>
+        <textarea id="originalDecrypt" readonly></textarea>
+      </div>
+      <div class="modal-field">
+        <label>Messaggio decifrato</label>
+        <textarea id="cipherDecrypt" readonly></textarea>
+        <div class="modal-buttons">
+          <button class="copy-btn" type="button">Copia messaggio decifrato</button>
+          <button class="delete-btn" type="button">Elimina</button>
+        </div>
+      </div>
+      <div class="modal-field">
+        <label>Spostamento lettere</label>
+        <input id="keyDecrypt" readonly />
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
