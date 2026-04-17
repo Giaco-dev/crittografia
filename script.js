@@ -206,18 +206,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
       });
     } else {
-      // Mobile behavior - touch/click to toggle
+      // Mobile behavior - click/tap to toggle
       const toggleMenu = (e) => {
         e.preventDefault();
         e.stopPropagation();
         modeMenu.classList.toggle('open');
       };
       
-      // Use both click and touch events for better mobile support
       modeBtn.addEventListener('click', toggleMenu);
-      modeBtn.addEventListener('touchstart', toggleMenu);
       
-      // Close menu when clicking/touching outside
+      // Close menu when clicking outside
       const closeMenu = (e) => {
         if (!modeMenuContainer.contains(e.target)) {
           modeMenu.classList.remove('open');
@@ -225,13 +223,9 @@ document.addEventListener('DOMContentLoaded', () => {
       };
       
       document.addEventListener('click', closeMenu);
-      document.addEventListener('touchstart', closeMenu);
       
-      // Prevent menu from closing when clicking/touching inside it
+      // Prevent menu from closing when interacting inside it
       modeMenu.addEventListener('click', (e) => {
-        e.stopPropagation();
-      });
-      modeMenu.addEventListener('touchstart', (e) => {
         e.stopPropagation();
       });
     }
