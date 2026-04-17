@@ -195,27 +195,25 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const closeMenu = (e) => {
-      if (!modeMenuContainer.contains(e.target)) {
+      if (!modeMenuContainer.contains(e.target) && !modeMenu.contains(e.target)) {
         modeMenu.classList.remove('open');
       }
     };
 
-    modeBtn.addEventListener('click', toggleMenu);
-    modeBtn.addEventListener('touchstart', toggleMenu, { passive: false });
+    modeBtn.addEventListener('pointerdown', toggleMenu);
 
-    document.addEventListener('click', closeMenu);
-    document.addEventListener('touchstart', closeMenu);
+    document.addEventListener('pointerdown', closeMenu);
 
-    modeMenu.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
-    modeMenu.addEventListener('touchstart', (e) => {
+    modeMenu.addEventListener('pointerdown', (e) => {
       e.stopPropagation();
     });
 
     modeMenu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        modeMenu.classList.remove('open');
+      link.addEventListener('pointerdown', (e) => {
+        // Chiudi il menu dopo un breve delay per permettere la navigazione
+        setTimeout(() => {
+          modeMenu.classList.remove('open');
+        }, 100);
       });
     });
   }
