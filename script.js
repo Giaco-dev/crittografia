@@ -194,16 +194,29 @@ document.addEventListener('DOMContentLoaded', () => {
       modeMenu.classList.toggle('open');
     };
 
-    modeBtn.addEventListener('click', toggleMenu);
-
-    document.addEventListener('click', (e) => {
+    const closeMenu = (e) => {
       if (!modeMenuContainer.contains(e.target)) {
         modeMenu.classList.remove('open');
       }
-    });
+    };
+
+    modeBtn.addEventListener('click', toggleMenu);
+    modeBtn.addEventListener('touchstart', toggleMenu, { passive: false });
+
+    document.addEventListener('click', closeMenu);
+    document.addEventListener('touchstart', closeMenu);
 
     modeMenu.addEventListener('click', (e) => {
       e.stopPropagation();
+    });
+    modeMenu.addEventListener('touchstart', (e) => {
+      e.stopPropagation();
+    });
+
+    modeMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        modeMenu.classList.remove('open');
+      });
     });
   }
 });
