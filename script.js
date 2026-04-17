@@ -190,10 +190,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modeMenuContainer && modeMenu && modeBtn) {
     let menuTimeout;
     
-    // Check if device supports hover (desktop)
-    const supportsHover = window.matchMedia('(hover: hover)').matches;
+    // Check if device is touch-based (mobile/tablet)
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
     
-    if (supportsHover) {
+    if (!isTouchDevice) {
       // Desktop behavior - hover with delay
       modeMenuContainer.addEventListener('mouseenter', () => {
         clearTimeout(menuTimeout);
@@ -209,6 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Mobile behavior - click to toggle
       modeBtn.addEventListener('click', (e) => {
         e.preventDefault();
+        e.stopPropagation();
         modeMenu.classList.toggle('open');
       });
       
@@ -217,6 +218,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!modeMenuContainer.contains(e.target)) {
           modeMenu.classList.remove('open');
         }
+      });
+      
+      // Prevent menu from closing when clicking inside it
+      modeMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
       });
     }
   }
