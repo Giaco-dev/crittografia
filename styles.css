@@ -74,7 +74,14 @@ body {
   z-index: 100;
 }
 
-.mode-menu-container:hover .mode-menu,
+@media (hover: hover) and (pointer: fine) {
+  .mode-menu-container:hover .mode-menu {
+    max-height: 200px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 .mode-menu.open {
   max-height: 200px;
   opacity: 1;
