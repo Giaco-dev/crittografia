@@ -188,46 +188,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const modeBtn = document.querySelector('.mode-btn');
   
   if (modeMenuContainer && modeMenu && modeBtn) {
-    let menuTimeout;
-    
-    // Check if device is touch-based (mobile/tablet)
-    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-    
-    if (!isTouchDevice) {
-      // Desktop behavior - hover with delay
-      modeMenuContainer.addEventListener('mouseenter', () => {
-        clearTimeout(menuTimeout);
-        modeMenu.classList.add('open');
-      });
-      
-      modeMenuContainer.addEventListener('mouseleave', () => {
-        menuTimeout = setTimeout(() => {
-          modeMenu.classList.remove('open');
-        }, 3000);
-      });
-    } else {
-      // Mobile behavior - click/tap to toggle
-      const toggleMenu = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        modeMenu.classList.toggle('open');
-      };
-      
-      modeBtn.addEventListener('click', toggleMenu);
-      
-      // Close menu when clicking outside
-      const closeMenu = (e) => {
-        if (!modeMenuContainer.contains(e.target)) {
-          modeMenu.classList.remove('open');
-        }
-      };
-      
-      document.addEventListener('click', closeMenu);
-      
-      // Prevent menu from closing when interacting inside it
-      modeMenu.addEventListener('click', (e) => {
-        e.stopPropagation();
-      });
-    }
+    const toggleMenu = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      modeMenu.classList.toggle('open');
+    };
+
+    modeBtn.addEventListener('click', toggleMenu);
+
+    document.addEventListener('click', (e) => {
+      if (!modeMenuContainer.contains(e.target)) {
+        modeMenu.classList.remove('open');
+      }
+    });
+
+    modeMenu.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
   }
 });
