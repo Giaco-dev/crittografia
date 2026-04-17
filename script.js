@@ -206,22 +206,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
       });
     } else {
-      // Mobile behavior - click to toggle
-      modeBtn.addEventListener('click', (e) => {
+      // Mobile behavior - touch/click to toggle
+      const toggleMenu = (e) => {
         e.preventDefault();
         e.stopPropagation();
         modeMenu.classList.toggle('open');
-      });
+      };
       
-      // Close menu when clicking outside
-      document.addEventListener('click', (e) => {
+      // Use both click and touch events for better mobile support
+      modeBtn.addEventListener('click', toggleMenu);
+      modeBtn.addEventListener('touchstart', toggleMenu);
+      
+      // Close menu when clicking/touching outside
+      const closeMenu = (e) => {
         if (!modeMenuContainer.contains(e.target)) {
           modeMenu.classList.remove('open');
         }
-      });
+      };
       
-      // Prevent menu from closing when clicking inside it
+      document.addEventListener('click', closeMenu);
+      document.addEventListener('touchstart', closeMenu);
+      
+      // Prevent menu from closing when clicking/touching inside it
       modeMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+      modeMenu.addEventListener('touchstart', (e) => {
         e.stopPropagation();
       });
     }
