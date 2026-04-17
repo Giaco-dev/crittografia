@@ -71,7 +71,7 @@ body {
   height: 100vh;
   background: #0f172a;
   border-left: 1px solid rgba(148, 163, 184, 0.18);
-  transition: right 0.3s ease;
+  transition: right 0.5s ease;
   z-index: 100;
   padding: 2rem 1.5rem;
   box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
